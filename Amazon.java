@@ -21,7 +21,7 @@ public class Amazon {
 	public static void main(String[] args) throws IOException {
 		WebDriverManager.chromedriver().setup();
 		ChromeDriver driver =new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(100));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(70));
 		driver.get("https://www.amazon.in/");
 		driver.manage().window().maximize();
 		driver.findElement(By.xpath("//input[@id='twotabsearchtextbox']")).sendKeys("One Plus 9 Pro",Keys.ENTER);
@@ -37,7 +37,9 @@ public class Amazon {
 		File source=driver.getScreenshotAs(OutputType.FILE);
 		File destination = new File("./screenshots/img.png");
 		FileUtils.copyFile(source, destination);
-		
+		driver.findElement(By.xpath("//span/input[@id='add-to-cart-button']")).click();
+		String cart = driver.findElement(By.xpath("//span[@id='attach-accessory-cart-subtotal']")).getText();
+	System.out.println("The subtotalvalue of caart is "+cart);
 		
 		
 		

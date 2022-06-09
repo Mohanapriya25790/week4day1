@@ -36,9 +36,8 @@ public class Windowshandle {
 			driver.findElement(By.xpath("//table[@name='ComboBox_partyIdTo']/following-sibling::a")).click();
 			Set<String> windowHandles1 = driver.getWindowHandles();
 			List<String> newWindow1=new ArrayList<String>(windowHandles1);
-			driver.switchTo().window(newWindow1.get(1));
-			
-			driver.findElement(By.xpath("(//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a[@class='linktext'][2]")).click();
+			driver.switchTo().window(newWindow1.get(1));	
+			driver.findElement(By.xpath("//td//a[@class='linktext']")).click();
 			driver.switchTo().window(newWindow1.get(0));
 			driver.findElement(By.xpath("//a[text()='Merge']")).click();
 			Alert alert = driver.switchTo().alert();
