@@ -18,7 +18,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Amazon {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		WebDriverManager.chromedriver().setup();
 		ChromeDriver driver =new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(70));
@@ -27,6 +27,7 @@ public class Amazon {
 		driver.findElement(By.xpath("//input[@id='twotabsearchtextbox']")).sendKeys("One Plus 9 Pro",Keys.ENTER);
 		WebElement a=driver.findElement(By.xpath("//a//span[text()='38,999']"));
 		System.out.println("The Price of the product is "+a.getText());
+		Thread.sleep(5000);
 		WebElement e=driver.findElement(By.xpath("//a/span[text()='10,259']"));
 		System.out.println("No.of Customer view is "+e.getText());
 		driver.findElement(By.xpath("//img[@alt='Sponsored Ad - OnePlus 9 Pro 5G (Morning Mist, 8GB RAM, 128GB Storage)']")).click();
@@ -37,9 +38,10 @@ public class Amazon {
 		File source=driver.getScreenshotAs(OutputType.FILE);
 		File destination = new File("./screenshots/img.png");
 		FileUtils.copyFile(source, destination);
+		Thread.sleep(3000);
 		driver.findElement(By.xpath("//span/input[@id='add-to-cart-button']")).click();
-		String cart = driver.findElement(By.xpath("//span[@id='attach-accessory-cart-subtotal']")).getText();
-	System.out.println("The subtotalvalue of caart is "+cart);
+		String cart = driver.findElement(By.xpath("//span[@id='attach-accessory-cart-total-string']")).getText();
+	System.out.println(cart);
 		
 		
 		
